@@ -1,0 +1,82 @@
+@model MusicStore.Models.Album
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Album</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dd>
+            <img class="albumDetailsImage" src="/AlbumImages/@Html.DisplayFor(model => model.Picture) " />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Artist)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Artist.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Genre.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div class="songList">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Duration</th>
+            </tr>
+         </thead>
+        <tbody>
+            @foreach (var song in Model.Songs)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => song.Order)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => song.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => song.Duration)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    @if (User.IsInRole("admin"))
+    {
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> <span> | </span>
+    }
+    <a asp-action="Index">Back to List</a>
+</div>
