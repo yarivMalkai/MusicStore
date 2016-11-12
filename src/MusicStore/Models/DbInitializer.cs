@@ -34,7 +34,7 @@ namespace MusicStore.Models
 
             context.Database.OpenConnection();
             context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT Artists ON");
-            context.Artists.Add(new Artist() { Id = 1, Name = "Beyonce", Type = ArtistType.Female, Nationality = "USA" });
+            context.Artists.Add(new Artist() { Id = 1, Name = "Beyonce", Type = ArtistType.Female, Nationality = "USA", Description = "gdflgfs sfdkbnsdf sdfkdbfjldsbf dkfbsdjkf sd fksdbfkjsd fsdj fjdks fjksd fjkds fjskd fjksdbfjksdbfkjsd fjksd fj", Picture = "beyonce.jpg" });
             context.Artists.Add(new Artist() { Id = 2, Name = "Rihanna", Type = ArtistType.Female, Nationality = "Barbados" });
             context.Artists.Add(new Artist() { Id = 3, Name = "Bob Marley", Type = ArtistType.Male, Nationality = "Jamaica" });
             context.Artists.Add(new Artist() { Id = 4, Name = "The Rolling Stones", Type = ArtistType.Band, Nationality = "UK" });

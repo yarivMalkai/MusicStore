@@ -15,6 +15,10 @@ namespace MusicStore.Models
 
         public string Nationality { get; set; }
 
+        public string Description { get; set; }
+
+        public string Picture { get; set; }
+
         public virtual ICollection<Album> Albums { get; set; }
     }
 
