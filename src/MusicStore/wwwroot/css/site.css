@@ -68,3 +68,13 @@ textarea {
         background-color: #F4FDCF;
     }
 
+/* ========== Album index ============= */
+.filtersAlbums .filt {
+    max-width: 105px;
+    display: inline-block;
+    float: left;
+    margin-left: 15px;
+    height: 20px;
+    line-height: 33px;
+    vertical-align: middle;
+}

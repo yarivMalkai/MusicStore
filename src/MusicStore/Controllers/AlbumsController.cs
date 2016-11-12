@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MusicStore.Data;
 using MusicStore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MusicStore.Controllers
 {
@@ -20,10 +21,27 @@ namespace MusicStore.Controllers
         }
 
         // GET: Albums
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string genreFilter, string aritistNation)
         {
-            var musicContext = _context.Albums.Include(a => a.Artist).Include(a => a.Genre).Include(a => a.Songs);
-            return View(await musicContext.ToListAsync());
+            var Albums = _context.Albums.Include(a => a.Artist).Include(a => a.Genre).Include(a => a.Songs).Where(a => true);
+            ViewBag.Genres = _context.Genres.Select(g => g.Name);
+            
+
+            if (!String.IsNullOrEmpty(genreFilter))
+            {
+                Albums = Albums.Where(a => a.Genre.Name == genreFilter);
+            }
+
+            if (!String.IsNullOrEmpty(aritistNation))
+            {
+                Albums = from a in Albums
+                         join b in _context.Artists on
+                          a.ArtistID equals b.Id
+                         where (b.Nationality.Contains(aritistNation))
+                         select a;
+            }
+
+            return View(await Albums.ToListAsync());
         }
 
         // GET: Albums/Details/5
@@ -44,6 +62,7 @@ namespace MusicStore.Controllers
         }
 
         // GET: Albums/Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             ViewData["ArtistID"] = new SelectList(_context.Artists, "Id", "Id");
@@ -56,6 +75,7 @@ namespace MusicStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([Bind("Id,ArtistID,GenreID,Name,Picture,Price,Year")] Album album)
         {
             if (ModelState.IsValid)
@@ -70,6 +90,7 @@ namespace MusicStore.Controllers
         }
 
         // GET: Albums/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -92,6 +113,7 @@ namespace MusicStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ArtistID,GenreID,Name,Picture,Price,Year")] Album album)
         {
             if (id != album.Id)
@@ -125,6 +147,7 @@ namespace MusicStore.Controllers
         }
 
         // GET: Albums/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -144,6 +167,7 @@ namespace MusicStore.Controllers
         // POST: Albums/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var album = await _context.Albums.SingleOrDefaultAsync(m => m.Id == id);

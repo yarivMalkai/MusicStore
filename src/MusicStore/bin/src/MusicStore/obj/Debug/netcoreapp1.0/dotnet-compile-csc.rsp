@@ -232,6 +232,8 @@
 "D:\dev\MusicStore\src\MusicStore\Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs"
 "D:\dev\MusicStore\src\MusicStore\Data\Migrations\20161111212911_f.cs"
 "D:\dev\MusicStore\src\MusicStore\Data\Migrations\20161111212911_f.Designer.cs"
+"D:\dev\MusicStore\src\MusicStore\Data\Migrations\20161112173157_i.cs"
+"D:\dev\MusicStore\src\MusicStore\Data\Migrations\20161112173157_i.Designer.cs"
 "D:\dev\MusicStore\src\MusicStore\Data\Migrations\ApplicationDbContextModelSnapshot.cs"
 "D:\dev\MusicStore\src\MusicStore\Migrations\20161104153258_a.cs"
 "D:\dev\MusicStore\src\MusicStore\Migrations\20161104153258_a.Designer.cs"
