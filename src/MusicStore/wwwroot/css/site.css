@@ -49,6 +49,7 @@ textarea {
 .albumDetailsImage {
     height: 250px;
     width: 250px;
+    margin-bottom: 10px;
 }
 
 /* Hide/rearrange for smaller screens */
@@ -68,3 +69,11 @@ textarea {
         background-color: #F4FDCF;
     }
 
+.details-title{
+    width: 30%;
+    font-weight: bold;
+}
+
+.details-data{
+    width: 70%;
+}

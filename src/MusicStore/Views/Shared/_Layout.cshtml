@@ -41,10 +41,6 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2016 - MusicStore</p>
-        </footer>
     </div>
 
     <environment names="Development">
@@ -66,4 +62,8 @@
 
     @RenderSection("scripts", required: false)
 </body>
+<footer class="container">
+    <hr />
+    <p>&copy; 2016 - MusicStore</p>
+</footer>
 </html>
