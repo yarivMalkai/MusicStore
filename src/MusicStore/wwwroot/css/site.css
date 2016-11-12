@@ -80,6 +80,8 @@ textarea {
     vertical-align: middle;
 }
 
+/* ====== Album Details ====== */
+
 .details-title{
     width: 30%;
     font-weight: bold;
@@ -87,4 +89,37 @@ textarea {
 
 .details-data{
     width: 70%;
+}
+
+/* ======== Custom Fonts ========= */
+@font-face {
+    font-family: "MyLogoFont";
+    src: url('MotionPicture_PersonalUseOnly.ttf');
+}
+
+@font-face {
+    font-family: "MyNavFont";
+    src: url('VertigoFLF.ttf');
+}
+
+@font-face {
+    font-family: "MyNormalFont";
+    src: url('TYPEWR__.TTF');
+}
+
+/* ========= Navbar ========= */
+
+.navbar-brand {
+    font-family: MyLogoFont;
+    font-size: xx-large;
+}
+
+.navbar-nav{
+    font-family:MyNavFont;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.navbar-nav li:hover {
+    background-color: #181818;
 }
