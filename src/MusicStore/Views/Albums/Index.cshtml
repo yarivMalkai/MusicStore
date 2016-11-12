@@ -10,6 +10,42 @@
     <a asp-action="Create">Create New</a>
 </p>
 
+<form method="get" action="@Url.Action("Index")"
+      data-otf-ajax="true" data-otf-target="#dynamicContent">
+
+    <label>Filters</label>
+    <div class="row filtersAlbums">
+        <div class="filt">
+            Game Title:
+        </div>
+        <div class="col-xs-2">
+        </div>
+
+        <div class="filt">
+            Genre:
+        </div>
+        <div class="col-xs-2">
+            @Html.DropDownList("genreFilter", new SelectList(ViewBag.Genres), "Choose genre", new { @class = "form-control" })
+        </div>
+        <div class="col-xs-2">
+        </div>
+        <div class="filt">
+            Artist Nation:
+        </div>
+        <div class="col-xs-2">
+            <div class="col-xs-2">
+                @Html.TextBox("aritistNation", "", new {  })
+            </div>
+        </div>
+
+        <div class="col-xs-1">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+
+    </div>
+</form>
+
 <div id="dynamicContent">
     @Html.Partial("AlbumsList", Model)
 </div>
+
