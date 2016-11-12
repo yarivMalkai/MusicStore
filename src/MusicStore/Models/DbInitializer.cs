@@ -36,11 +36,11 @@ namespace MusicStore.Models
             context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT Artists ON");
             context.Artists.Add(new Artist() { Id = 1, Name = "Beyonce", Type = ArtistType.Female, Nationality = "USA", Description = "gdflgfs sfdkbnsdf sdfkdbfjldsbf dkfbsdjkf sd fksdbfkjsd fsdj fjdks fjksd fjkds fjskd fjksdbfjksdbfkjsd fjksd fj", Picture = "beyonce.jpg" });
             context.Artists.Add(new Artist() { Id = 2, Name = "Rihanna", Type = ArtistType.Female, Nationality = "Barbados" });
-            context.Artists.Add(new Artist() { Id = 3, Name = "Bob Marley", Type = ArtistType.Male, Nationality = "Jamaica" });
+            context.Artists.Add(new Artist() { Id = 3, Name = "Bob Marley", Type = ArtistType.Male, Nationality = "Jamaica", Picture = "marley.jpg" });
             context.Artists.Add(new Artist() { Id = 4, Name = "The Rolling Stones", Type = ArtistType.Band, Nationality = "UK" });
             context.Artists.Add(new Artist() { Id = 5, Name = "The Beatles", Type = ArtistType.Band, Nationality = "UK" });
-            context.Artists.Add(new Artist() { Id = 6, Name = "Arctic Monkeys", Type = ArtistType.Band, Nationality = "UK" });
-            context.Artists.Add(new Artist() { Id = 7, Name = "Avicii", Type = ArtistType.Male, Nationality = "Sweden" });
+            context.Artists.Add(new Artist() { Id = 6, Name = "Arctic Monkeys", Type = ArtistType.Band, Nationality = "UK", Picture = "arctic.jpg"});
+            context.Artists.Add(new Artist() { Id = 7, Name = "Avicii", Type = ArtistType.Male, Nationality = "Sweden", Picture = "avicii.jpf", Description = "Tim Bergling, better known by his stage name Avicii, is a Swedish musician, DJ, remixer and record producer" });
             context.SaveChanges();
             context.Database.CloseConnection();
 
