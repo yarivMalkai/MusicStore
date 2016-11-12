@@ -1,57 +1,44 @@
 @model MusicStore.Models.Album
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Album";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Name)</h2>
 
-<div>
-    <h4>Album</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dd>
-            <img class="albumDetailsImage" src="/AlbumImages/@Html.DisplayFor(model => model.Picture) " />
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Artist)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Artist.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Genre.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Year)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-    </dl>
+<hr />
+<div class="col-xs-6">
+    <table style="border:none">
+        <tr>
+            <td colspan="2">
+                <img class="albumDetailsImage" src="/AlbumImages/@Html.DisplayFor(model => model.Picture) " />
+            </td>
+        </tr>
+        <tr>
+            <td class="details-title">@Html.DisplayNameFor(model => model.Artist)</td>
+            <td class="details-data">@Html.DisplayFor(model => model.Artist.Name)</td>
+        </tr>
+        <tr>
+            <td class="details-title">@Html.DisplayNameFor(model => model.Genre)</td>
+            <td class="details-data">@Html.DisplayFor(model => model.Genre.Name)</td>
+        </tr>
+        <tr>
+            <td class="details-title">@Html.DisplayNameFor(model => model.Year)</td>
+            <td class="details-data">@Html.DisplayFor(model => model.Year)</td>
+        </tr>
+        <tr>
+            <td class="details-title">@Html.DisplayNameFor(model => model.Price)</td>
+            <td class="details-data">@Html.DisplayFor(model => model.Price)</td>
+        </tr>
+    </table>
 </div>
-<div class="songList">
-    <table>
+<div class="songList col-xs-6">
+    <table width="70%">
         <thead>
             <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Duration</th>
+                <th width="10%"></th>
+                <th width="80%">Name</th>
+                <th width="10%">Duration</th>
             </tr>
          </thead>
         <tbody>
@@ -74,9 +61,10 @@
 </div>
 
 <div>
+    
     @if (User.IsInRole("admin"))
     {
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> <span> | </span>
     }
-    <a asp-action="Index">Back to List</a>
+    
 </div>
