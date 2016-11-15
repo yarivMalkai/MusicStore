@@ -29,6 +29,7 @@ namespace MusicStore.Models
             context.Genres.Add(new Genre() { Id = 4, Name = "Techno" });
             context.Genres.Add(new Genre() { Id = 5, Name = "House" });
             context.Genres.Add(new Genre() { Id = 6, Name = "Reggae" });
+            context.Genres.Add(new Genre() { Id = 7, Name = "Soul" });
             context.SaveChanges();
             context.Database.CloseConnection();
 
@@ -46,7 +47,7 @@ namespace MusicStore.Models
 
             context.Database.OpenConnection();
             context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT Albums ON");
-            context.Albums.Add(new Album() { Id = 1, ArtistID = 1, GenreID = 1, Name = "Lemonade", Year = 2016, Price = 9.90, Picture = "Lemonade.jpg" });
+            context.Albums.Add(new Album() { Id = 1, ArtistID = 1, GenreID = 7, Name = "Lemonade", Year = 2016, Price = 9.90, Picture = "Lemonade.jpg" });
             context.Albums.Add(new Album() { Id = 2, ArtistID = 1, GenreID = 1, Name = "Dangerously in Love", Year = 2003, Price = 9.90, Picture = "Dangerously_in_Love.jpg" });
             context.Albums.Add(new Album() { Id = 3, ArtistID = 6, GenreID = 3, Name = "AM", Year = 2013, Price = 9.90, Picture = "AM.jpg" });
             context.Albums.Add(new Album() { Id = 4, ArtistID = 6, GenreID = 3, Name = "Suck It And See", Year = 2011, Price = 9.90, Picture = "Suck_it_and_see.jpg" });

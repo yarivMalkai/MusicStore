@@ -22,6 +22,12 @@ namespace MusicStore.Controllers
         // GET: Artists
         public async Task<IActionResult> Index()
         {
+            Dictionary<int, List<Genre>> dic = (from a in _context.Artists
+                                                join b in _context.Albums on
+                                                a.Id equals b.ArtistID
+                                                select new { a.Id, b.Genre }).GroupBy(a => a.Id).ToDictionary(a => a.Key, a => a.Select(c => c.Genre).ToList());
+
+            ViewBag.GenresByArtist = dic;
             return View(await _context.Artists.OrderBy(a => a.Name).GroupBy(a => a.Type).ToListAsync());
         }
 
