@@ -22,7 +22,7 @@ namespace MusicStore.Controllers
         // GET: Artists
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Artists.ToListAsync());
+            return View(await _context.Artists.OrderBy(a => a.Name).GroupBy(a => a.Type).ToListAsync());
         }
 
         // GET: Artists/Details/5
