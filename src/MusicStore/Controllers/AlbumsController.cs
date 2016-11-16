@@ -103,8 +103,8 @@ namespace MusicStore.Controllers
             {
                 return NotFound();
             }
-            ViewData["ArtistID"] = new SelectList(_context.Artists, "Id", "Id", album.ArtistID);
-            ViewData["GenreID"] = new SelectList(_context.Set<Genre>(), "Id", "Id", album.GenreID);
+            ViewData["ArtistID"] = new SelectList(_context.Artists, "Id", "Name", album.ArtistID).OrderBy(a => a.Text);
+            ViewData["GenreID"] = new SelectList(_context.Set<Genre>(), "Id", "Name", album.GenreID).OrderBy(a => a.Text);
             return View(album);
         }
 
