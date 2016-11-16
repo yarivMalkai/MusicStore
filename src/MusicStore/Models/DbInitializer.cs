@@ -30,6 +30,7 @@ namespace MusicStore.Models
             context.Genres.Add(new Genre() { Id = 5, Name = "House" });
             context.Genres.Add(new Genre() { Id = 6, Name = "Reggae" });
             context.Genres.Add(new Genre() { Id = 7, Name = "Soul" });
+            context.Genres.Add(new Genre() { Id = 8, Name = "Trance" });
             context.SaveChanges();
             context.Database.CloseConnection();
 
@@ -42,6 +43,9 @@ namespace MusicStore.Models
             context.Artists.Add(new Artist() { Id = 5, Name = "The Beatles", Type = ArtistType.Band, Nationality = "UK" });
             context.Artists.Add(new Artist() { Id = 6, Name = "Arctic Monkeys", Type = ArtistType.Band, Nationality = "UK", Picture = "arctic.jpg"});
             context.Artists.Add(new Artist() { Id = 7, Name = "Avicii", Type = ArtistType.Male, Nationality = "Sweden", Picture = "avicii.jpf", Description = "Tim Bergling, better known by his stage name Avicii, is a Swedish musician, DJ, remixer and record producer" });
+            context.Artists.Add(new Artist() { Id = 8, Name = "Infected Mushroom", Type = ArtistType.Band, Nationality = "Israel" });
+            context.Artists.Add(new Artist() { Id = 9, Name = "Bruno Mars", Type = ArtistType.Male, Nationality = "USA", Picture = "Bruno_Mars,_Las_Vegas_2010.jpg"  });
+            context.Artists.Add(new Artist() { Id = 10, Name = "Eminem", Type = ArtistType.Male, Nationality = "USA" });
             context.SaveChanges();
             context.Database.CloseConnection();
 
@@ -53,6 +57,10 @@ namespace MusicStore.Models
             context.Albums.Add(new Album() { Id = 4, ArtistID = 6, GenreID = 3, Name = "Suck It And See", Year = 2011, Price = 9.90, Picture = "Suck_it_and_see.jpg" });
             context.Albums.Add(new Album() { Id = 5, ArtistID = 7, GenreID = 5, Name = "True", Year = 2013, Price = 9.90, Picture = "True.jpg" });
             context.Albums.Add(new Album() { Id = 6, ArtistID = 3, GenreID = 6, Name = "Kaya", Year = 1978, Price = 9.90, Picture = "Kaya.jpg" });
+            context.Albums.Add(new Album() { Id = 7, ArtistID = 8, GenreID = 8, Name = "Converting Vegetarians", Year = 2003, Price = 9.90, Picture = "Converting_Vegetarians.jpg" });
+            context.Albums.Add(new Album() { Id = 8, ArtistID = 8, GenreID = 8, Name = "Legend of the Black Shawarma", Year = 2009, Price = 9.90, Picture = "legendOfBlack.jpg" });
+            context.Albums.Add(new Album() { Id = 9, ArtistID = 9, GenreID = 7, Name = "24K Magic", Year = 2016, Price = 9.90, Picture = "24K_Magic.jpg" });
+            context.Albums.Add(new Album() { Id = 10, ArtistID = 5, GenreID = 3, Name = "Abbey Road", Year = 1969, Price = 9.90, Picture = "AbbeyRoad.jpg" });
             context.SaveChanges();
             context.Database.CloseConnection();
 

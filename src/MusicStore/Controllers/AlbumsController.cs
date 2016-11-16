@@ -69,8 +69,8 @@ namespace MusicStore.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
-            ViewData["ArtistID"] = new SelectList(_context.Artists, "Id", "Id");
-            ViewData["GenreID"] = new SelectList(_context.Set<Genre>(), "Id", "Id");
+            ViewData["ArtistID"] = new SelectList(_context.Artists, "Id", "Name").OrderBy(a => a.Text);
+            ViewData["GenreID"] = new SelectList(_context.Set<Genre>(), "Id", "Name").OrderBy(a => a.Text);
             return View();
         }
 
