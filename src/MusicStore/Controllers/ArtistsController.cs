@@ -51,6 +51,8 @@ namespace MusicStore.Controllers
         // GET: Artists/Create
         public IActionResult Create()
         {
+            ViewBag.Types = new SelectList((IEnumerable<ArtistType>)Enum.GetValues(typeof(ArtistType)));
+
             return View();
         }
 
@@ -83,6 +85,9 @@ namespace MusicStore.Controllers
             {
                 return NotFound();
             }
+            
+            ViewBag.Types = new SelectList((IEnumerable<ArtistType>)Enum.GetValues(typeof(ArtistType)));
+
             return View(artist);
         }
 
