@@ -21,11 +21,15 @@ namespace MusicStore.Controllers
         }
 
         // GET: Albums
-        public async Task<IActionResult> Index(string genreFilter, string aritistNation)
+        public async Task<IActionResult> Index(string albumName, string genreFilter, string aritistNation)
         {
             var Albums = _context.Albums.Include(a => a.Artist).Include(a => a.Genre).Include(a => a.Songs).Where(a => true);
             ViewBag.Genres = _context.Genres.Select(g => g.Name);
-            
+
+            if (!String.IsNullOrEmpty(albumName))
+            {
+                Albums = Albums.Where(a => a.Name.Contains(albumName));
+            }
 
             if (!String.IsNullOrEmpty(genreFilter))
             {
