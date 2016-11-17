@@ -70,14 +70,21 @@ textarea {
     }
 
     /* ========== Album index ============= */
-.filtersAlbums .filt {
-    max-width: 105px;
-    display: inline-block;
+.filt *{
     float: left;
-    margin-left: 15px;
-    height: 20px;
-    line-height: 33px;
-    vertical-align: middle;
+    height: 30px;
+    margin: 5px;
+}
+
+.filt p{
+    width: 35%;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.filt input[type="text"],
+.filt select{
+    width: 55%;
 }
 
 /* ====== Album Details ====== */

@@ -14,34 +14,24 @@
       data-otf-ajax="true" data-otf-target="#dynamicContent">
 
     <label>Filters</label>
-    <div class="row filtersAlbums">
-        <div class="filt">
-            Album Name:
-        </div>
-        <div class="col-xs-2">
+    <div class="row">
+        <div class="filt col-xs-3">
+            <p>Album Name:</p>
             @Html.TextBox("albumName", "", new { })
         </div>
 
-        <div class="col-xs-2">
-        </div>
-
-        <div class="filt">
-            Genre:
-        </div>
-        <div class="col-xs-2">
+        <div class="filt col-xs-3">
+            <p>Genre:</p>
             @Html.DropDownList("genreFilter", new SelectList(ViewBag.Genres), "Choose genre", new { @class = "form-control" })
         </div>
-        <div class="col-xs-2">
-        </div>
-        <div class="filt">
-            Artist Nation:
-        </div>
-        <div class="col-xs-2">
+
+        <div class="filt col-xs-3">
+            <p>Artist Nation:</p>
             @Html.TextBox("aritistNation", "", new {  })
         </div>
 
         <div class="col-xs-1">
-            <input type="submit" value="Search" class="btn btn-primary" />
+            <input type="submit" value="Filter" class="btn btn-primary" />
         </div>
 
     </div>
