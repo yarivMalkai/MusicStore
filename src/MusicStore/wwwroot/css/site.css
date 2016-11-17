@@ -46,12 +46,6 @@ textarea {
     width: 160px;
 }
 
-.albumDetailsImage {
-    height: 250px;
-    width: 250px;
-    margin-bottom: 10px;
-}
-
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
   /* Hide captions */
@@ -85,17 +79,6 @@ textarea {
 .filt input[type="text"],
 .filt select{
     width: 55%;
-}
-
-/* ====== Album Details ====== */
-
-.details-title{
-    width: 30%;
-    font-weight: bold;
-}
-
-.details-data{
-    width: 70%;
 }
 
 /* ======== Custom Fonts ========= */
@@ -150,4 +133,32 @@ li.user-dropdown {
 .user-dropdown:hover .user-dropdown-content {
     visibility: visible;
     opacity: 1;
+}
+
+/* =========== Details Table =========== */
+table.details-table{
+    border:none;
+    width: 100%;
+}
+
+.details-image {
+    max-width:280px;
+    max-height:330px;
+    min-width:210;
+    min-height:210px;
+    width: auto;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.details-title{
+    width: 30%;
+    font-weight: bold;
+}
+
+.details-data{
+    width: 70%;
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
 }
