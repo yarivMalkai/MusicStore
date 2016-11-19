@@ -1,0 +1,58 @@
+@model IEnumerable<MusicStore.Models.Purchase>
+
+@{
+    ViewData["Title"] = "Stats";
+}
+
+<h2>Stats</h2>
+
+@{
+    var x = ((List<Genre>)ViewBag.Genres).OrderByDescending(g => g.Albums.Count).Take(3).ToList();
+        }
+
+<div class="col-xs-offset-2 col-xs-4" id="myPie"></div>
+
+<div class="row bargraph">
+
+    <svg class="chart"></svg>
+</div>
+
+<script src="~/js/d3/d3.min.js">
+</script>
+<script src="~/js/d3/d3pie.min.js"></script>
+<script>
+    var gen1 = @Html.Encode(x[0].Albums.Count);
+    var gen2 = @Html.Encode(x[1].Albums.Count);
+    var gen3 = @Html.Encode(x[2].Albums.Count);
+    var count = @Html.Encode(ViewBag.AlbumsCount);
+    var other = count - gen1 -gen2 - gen3;
+
+
+    var name1 = "@Html.Encode(x[0].Name);"
+    var name2 = "@Html.Encode(x[1].Name);"
+    var name3 = "@Html.Encode(x[2].Name);"
+
+    var pie = new d3pie("myPie", {
+        header: {
+            title: {
+                text: "Top 3 Genres:"
+            }
+        },
+        data: {
+            content: [
+                { label: name1, value: +gen1, color: "#bf0000" },
+                { label: name2, value: +gen2, color: "#CC6633" },
+                { label: name3, value: +gen3, color: "#2B7558" },
+                { label: "Other", value: +other, color: "#6B7588" },
+            ]
+        }, size: {
+            canvasHeight: 350,
+            canvasWidth: 350,
+            pieInnerRadius: 12,
+            pieOuterRadius: null
+        },
+    });
+</script>
+
+
+

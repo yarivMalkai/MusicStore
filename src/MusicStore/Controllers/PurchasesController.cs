@@ -41,6 +41,21 @@ namespace MusicStore.Controllers
             return View(await musicContext.ToListAsync());
         }
 
+        public async Task<IActionResult> Stats()
+        {
+            var musicContext = _context.Purchases.Include(p => p.Album).Include(p => p.Album.Artist);
+            
+            if (this.User.IsInRole("admin"))
+            {
+                ViewBag.Users = UserManager.Users.ToDictionary(u => u.Id, u => u.UserName);
+            }
+
+            ViewBag.Genres = _context.Genres.Include(g => g.Albums).ToList();
+            ViewBag.AlbumsCount = _context.Albums.Count();
+
+            return View(await musicContext.ToListAsync());
+        }
+
         // GET: Purchases/Details/5
         public async Task<IActionResult> Details(int? id)
         {

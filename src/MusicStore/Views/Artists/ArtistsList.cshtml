@@ -17,7 +17,10 @@
                     <th style="width:30%">
                         Genres
                     </th>
-                    <th style="width:10%"></th>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <th style="width:10%"></th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -40,10 +43,13 @@
                                 @Html.Encode(genres);
                             }
                         </td>
+                        @if (User.IsInRole("admin"))
+                        {
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                         </td>
+                        }
                     </tr>
                 }
             </tbody>

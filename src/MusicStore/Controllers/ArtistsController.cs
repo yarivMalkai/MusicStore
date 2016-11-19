@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MusicStore.Data;
 using MusicStore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MusicStore.Controllers
 {
@@ -76,6 +77,7 @@ namespace MusicStore.Controllers
         }
 
         // GET: Artists/Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             ViewBag.Types = new SelectList((IEnumerable<ArtistType>)Enum.GetValues(typeof(ArtistType)));
@@ -86,6 +88,7 @@ namespace MusicStore.Controllers
         // POST: Artists/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Description,Name,Nationality,Picture,Type")] Artist artist)
@@ -100,6 +103,7 @@ namespace MusicStore.Controllers
         }
 
         // GET: Artists/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -121,6 +125,7 @@ namespace MusicStore.Controllers
         // POST: Artists/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Description,Name,Nationality,Picture,Type")] Artist artist)
@@ -154,6 +159,7 @@ namespace MusicStore.Controllers
         }
 
         // GET: Artists/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -171,6 +177,7 @@ namespace MusicStore.Controllers
         }
 
         // POST: Artists/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

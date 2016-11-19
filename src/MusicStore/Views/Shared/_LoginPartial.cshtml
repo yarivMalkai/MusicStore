@@ -18,6 +18,8 @@
                     @if (User.IsInRole("admin"))
                     {
                         <a asp-action="Index" asp-controller="Purchases">Manage Purchases</a>
+                        <br />
+                        <a asp-action="Stats" asp-controller="Purchases">Site Stats</a>
                     }
                 </div>
             </li>
