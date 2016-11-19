@@ -11,8 +11,14 @@
             <li class="user-dropdown">
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
                 <div class="user-dropdown-content">
-                    <a href="#">Purchases</a>
-                    <a href="#">Wishlist</a>
+                    @if (User.IsInRole("user"))
+                    {
+                        <a asp-action="Index" asp-controller="Purchases">My Purchases</a>
+                    }
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a asp-action="Index" asp-controller="Purchases">Manage Purchases</a>
+                    }
                 </div>
             </li>
             <li>

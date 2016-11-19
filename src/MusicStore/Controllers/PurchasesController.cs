@@ -7,22 +7,37 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MusicStore.Data;
 using MusicStore.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace MusicStore.Controllers
 {
     public class PurchasesController : Controller
     {
         private readonly MusicContext _context;
+        public UserManager<ApplicationUser> UserManager { get; set; }
 
-        public PurchasesController(MusicContext context)
+        public PurchasesController(MusicContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            UserManager = userManager;
         }
 
         // GET: Purchases
         public async Task<IActionResult> Index()
         {
-            var musicContext = _context.Purchases.Include(p => p.Album);
+            var musicContext = _context.Purchases.Include(p => p.Album).Include(p => p.Album.Artist);
+
+            if (this.User.IsInRole("user"))
+            {
+                string userID = this.UserManager.GetUserId(this.User);
+                musicContext = musicContext.Where(p => p.UserId == userID).Include(p => p.Album).Include(p => p.Album.Artist);
+            }
+
+            if (this.User.IsInRole("admin"))
+            {
+                ViewBag.Users = UserManager.Users.ToDictionary(u => u.Id, u => u.UserName);
+            }
+
             return View(await musicContext.ToListAsync());
         }
 

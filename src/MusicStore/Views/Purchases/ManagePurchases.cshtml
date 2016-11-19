@@ -1,0 +1,57 @@
+@model IEnumerable<MusicStore.Models.Purchase>
+
+<h2>Manage Purchases</h2>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                User
+            </th>
+            <th>
+                Album
+            </th>
+            <th>
+                Artist
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderByDescending(p => p.Date))
+        {
+            <tr>
+                <th>
+                    @{
+                        Dictionary<string, string> Users = ViewBag.Users;
+                        @Html.DisplayFor(modelItem => Users[item.UserId])
+                    }
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Album.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Album.Artist.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    <img class="albumImage" src="/AlbumImages/@Html.DisplayFor(modelItem => item.Album.Picture) " />
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
