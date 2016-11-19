@@ -8,23 +8,33 @@ using Microsoft.EntityFrameworkCore;
 using MusicStore.Data;
 using MusicStore.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace MusicStore.Controllers
 {
     public class AlbumsController : Controller
     {
         private readonly MusicContext _context;
+        public UserManager<ApplicationUser> UserManager { get; set; }
 
-        public AlbumsController(MusicContext context)
+        public AlbumsController(MusicContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            UserManager = userManager;
         }
 
         // GET: Albums
         public async Task<IActionResult> Index(string albumName, string genreFilter, string aritistNation)
         {
+            string userID = this.UserManager.GetUserId(this.User);
+
             var Albums = _context.Albums.Include(a => a.Artist).Include(a => a.Genre).Include(a => a.Songs).Where(a => true);
-            ViewBag.Genres = _context.Genres.Select(g => g.Name);
+            ViewBag.Genres = _context.Genres.Select(g => g.Name).ToList();
+            
+            if (this.User.IsInRole("user"))
+            {
+                ViewBag.Purchases = _context.Purchases.Where(p => p.UserId == userID).ToList();
+            }
 
             if (!String.IsNullOrEmpty(albumName))
             {
@@ -110,6 +120,22 @@ namespace MusicStore.Controllers
             ViewData["ArtistID"] = new SelectList(_context.Artists, "Id", "Name", album.ArtistID).OrderBy(a => a.Text);
             ViewData["GenreID"] = new SelectList(_context.Set<Genre>(), "Id", "Name", album.GenreID).OrderBy(a => a.Text);
             return View(album);
+        }
+        
+        [Authorize(Roles = "user")]
+        public async Task<IActionResult> Purchase(int id)
+        {
+            string userID = this.UserManager.GetUserId(this.User);
+            Purchase p = new Purchase()
+            {
+                UserId = userID,
+                AlbumId = id
+            };
+
+             _context.Add(p);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
 
         // POST: Albums/Edit/5

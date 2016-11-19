@@ -42,7 +42,7 @@
             </tr>
          </thead>
         <tbody>
-            @foreach (var song in Model.Songs)
+            @foreach (var song in Model.Songs.OrderBy(s => s.Order))
             {
                 <tr>
                     <td>

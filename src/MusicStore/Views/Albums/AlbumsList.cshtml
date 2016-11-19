@@ -49,6 +49,25 @@
                 <td>
                     <img class="albumImage" src="/AlbumImages/@Html.DisplayFor(modelItem => item.Picture) " />
                 </td>
+                @if (User.IsInRole("user"))
+                {
+                    var purchases = (List<Purchase>)ViewBag.Purchases;
+
+                    if (purchases.Any(p => p.AlbumId == item.Id))
+                    {
+                        <td>
+                            Purchased!!!
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a asp-action="Purchase" asp-route-id="@item.Id">Purchase</a>
+                        </td>
+                    }
+                }
+
+
                 @if (User.IsInRole("admin"))
                 {
                     <td>

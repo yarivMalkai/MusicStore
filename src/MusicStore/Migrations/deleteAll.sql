@@ -2,3 +2,4 @@
 delete from Albums
 delete from Artists
 delete from Genres
+delete from Purchases
