@@ -10,7 +10,11 @@
     var x = ((List<Genre>)ViewBag.Genres).OrderByDescending(g => g.Albums.Count).Take(3).ToList();
         }
 
-<div class="col-xs-offset-2 col-xs-4" id="myPie"></div>
+<div class="col-xs-offset-2" id="myPie"></div>
+
+<br /> <br />
+
+<div class="col-xs-offset-2" id="myPie2"></div>
 
 <div class="row bargraph">
 
@@ -44,6 +48,35 @@
                 { label: name2, value: +gen2, color: "#CC6633" },
                 { label: name3, value: +gen3, color: "#2B7558" },
                 { label: "Other", value: +other, color: "#6B7588" },
+            ]
+        }, size: {
+            canvasHeight: 350,
+            canvasWidth: 350,
+            pieInnerRadius: 12,
+            pieOuterRadius: null
+        },
+    });
+</script>
+
+<script>
+    @{ var y = Model.GroupBy(p => p.UserId).OrderByDescending(g => g.Count()).First();}
+    var user = @Html.Encode(y.Count());
+    var countUsers = @Html.Encode(Model.Count());
+    var other = countUsers - user;
+
+
+    var BuyernName = "@Html.Encode(((List<ApplicationUser>)ViewBag.Users).Where(u => u.Id == y.First().UserId).First().UserName)";
+
+    var pie2 = new d3pie("myPie2", {
+        header: {
+            title: {
+                text: "Top Buyer vs. Others:"
+            }
+        },
+        data: {
+            content: [
+                { label: "Other Users", value: +other, color: "#CC6633" },
+                { label: BuyernName, value: +user, color: "#bf0000" },
             ]
         }, size: {
             canvasHeight: 350,

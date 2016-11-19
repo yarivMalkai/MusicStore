@@ -52,6 +52,7 @@ namespace MusicStore.Controllers
 
             ViewBag.Genres = _context.Genres.Include(g => g.Albums).ToList();
             ViewBag.AlbumsCount = _context.Albums.Count();
+            ViewBag.Users = UserManager.Users.ToList();
 
             return View(await musicContext.ToListAsync());
         }
