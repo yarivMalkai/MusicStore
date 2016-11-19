@@ -43,7 +43,8 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "dnx-clr-win-x64": "1.0.0-rc1-update1"
+    "dnx-clr-win-x64": "1.0.0-rc1-update1",
+    "System.Runtime.Serialization.Json": "4.3.0"
   },
 
   "tools": {

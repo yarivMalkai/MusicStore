@@ -73,6 +73,13 @@ namespace MusicStore.Controllers
                 return NotFound();
             }
 
+            if(string.IsNullOrEmpty(artist.Description))
+            {
+                artist.Description = ArtistInfoClient.getArtistInfo(artist.Name.Replace(" ", "+")).Result;
+                _context.Update(artist);
+                _context.SaveChanges();
+            }
+
             return View(artist);
         }
 
