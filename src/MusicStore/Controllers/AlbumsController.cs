@@ -129,7 +129,8 @@ namespace MusicStore.Controllers
             Purchase p = new Purchase()
             {
                 UserId = userID,
-                AlbumId = id
+                AlbumId = id,
+                Date = DateTime.Now
             };
 
              _context.Add(p);

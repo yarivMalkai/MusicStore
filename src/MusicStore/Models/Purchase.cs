@@ -12,6 +12,8 @@ namespace MusicStore.Models
 
         public string UserId { get; set; }
 
+        public DateTime Date { get; set; }
+
         public int AlbumId { get; set; }
 
         [ForeignKey("AlbumId")]
