@@ -20,15 +20,42 @@ namespace MusicStore.Controllers
         }
 
         // GET: Artists
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string artistName, string genreFilter, string aritistNation)
         {
+            var Artists = _context.Artists.OrderBy(a => a.Name).Where(a => true);
+
             Dictionary<int, List<Genre>> dic = (from a in _context.Artists
                                                 join b in _context.Albums on
                                                 a.Id equals b.ArtistID
                                                 select new { a.Id, b.Genre }).GroupBy(a => a.Id).ToDictionary(a => a.Key, a => a.Select(c => c.Genre).ToList());
 
+
+            if (!string.IsNullOrEmpty(artistName))
+            {
+                Artists = Artists.Where(a => a.Name.Contains(artistName));
+            }
+
+            if (!string.IsNullOrEmpty(aritistNation))
+            {
+                Artists = Artists.Where(a => a.Nationality.Contains(aritistNation));
+            }
+
+            if (!string.IsNullOrEmpty(genreFilter))
+            {
+                Artists = Artists.Include(a => a.Albums).Where(a => a.Albums.Any(b => b.Genre.Name == genreFilter));
+            }
+
+
+            ViewBag.Genres = _context.Genres.Select(g => g.Name).ToList();
             ViewBag.GenresByArtist = dic;
-            return View(await _context.Artists.OrderBy(a => a.Name).GroupBy(a => a.Type).ToListAsync());
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("ArtistsList", await Artists.GroupBy(a => a.Type).ToListAsync());
+            }
+
+            
+            return View(await Artists.GroupBy(a => a.Type).ToListAsync());
         }
 
         // GET: Artists/Details/5

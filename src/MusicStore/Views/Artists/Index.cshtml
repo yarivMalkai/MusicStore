@@ -10,53 +10,31 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-@foreach (var group in Model)
-{
-    <table class="table">
-        <thead>
-            <tr>@Html.DisplayFor(modelItem => group.Key) Artists</tr>
-            <tr>
-                <th style="width:30%">
-                    Name
-                </th>
-                <th style="width:30%">
-                    Nationality
-                </th>
-                <th style="width:30%">
-                    Genres
-                </th>
-                <th style="width:10%"></th>
-            </tr>
-        </thead>
-        <tbody>
+<form method="get" action="@Url.Action("Index")"
+      data-otf-ajax="true" data-otf-target="#dynamicContent">
 
-            @foreach (var item in group)
-            {
+    <label>Filters</label>
+    <div class="row">
+        <div class="filt col-xs-3">
+            <p>Artist Name:</p>
+            @Html.TextBox("artistName", "", new { })
+        </div>
 
-                <tr class="tr-clickable" onclick="location.href = '@Url.Action("Details", new{id = item.Id})'">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nationality)
-                    </td>
-                    <td>
-                        @if (((Dictionary< int, List<Genre>>)ViewBag.GenresByArtist).ContainsKey(item.Id))
-                        {
-                            string genres = "";
-                            ((Dictionary<int, List<Genre>>)ViewBag.GenresByArtist)[item.Id].GroupBy(g => g.Id).Select(g => g.First()).ToList().ForEach(a => genres += a.Name + ", ");
-                            genres = genres.Substring(0, genres.Length - 2);
-                            @Html.Encode(genres);
-                        }
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        <div class="filt col-xs-3">
+            <p>Genre:</p>
+            @Html.DropDownList("genreFilter", new SelectList(ViewBag.Genres), "Choose genre", new { @class = "form-control" })
+        </div>
 
-}
+        <div class="filt col-xs-3">
+            <p>Artist Nation:</p>
+            @Html.TextBox("aritistNation", "", new { })
+        </div>
 
+        <div class="col-xs-1">
+            <input type="submit" value="Filter" class="btn btn-primary" />
+        </div>
+
+    </div>
+</form>
+
+@Html.Partial("ArtistsList", Model)
