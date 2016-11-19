@@ -24,16 +24,24 @@ namespace MusicStore.Controllers
         }
 
         // GET: Albums
-        public async Task<IActionResult> Index(string albumName, string genreFilter, string aritistNation)
+        public async Task<IActionResult> Index(string albumName, string genreFilter, string aritistNation, string artist)
         {
             string userID = this.UserManager.GetUserId(this.User);
 
             var Albums = _context.Albums.Include(a => a.Artist).Include(a => a.Genre).Include(a => a.Songs).Where(a => true);
             ViewBag.Genres = _context.Genres.Select(g => g.Name).ToList();
             
+            
+
             if (this.User.IsInRole("user"))
             {
                 ViewBag.Purchases = _context.Purchases.Where(p => p.UserId == userID).ToList();
+            }
+
+            if (!String.IsNullOrEmpty(artist))
+            {
+                Albums = Albums.Where(a => a.Artist.Name == (artist));
+                return View(await Albums.ToListAsync());
             }
 
             if (!String.IsNullOrEmpty(albumName))

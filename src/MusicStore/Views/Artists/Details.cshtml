@@ -29,6 +29,7 @@
         </tr>
     </table>
 </div>
+<br />
 <div class="col-xs-12">
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index" asp-controller="Albums" asp-route-artist="@Html.Encode(Model.Name)">Albums</a>
 </div>
