@@ -27,7 +27,7 @@
 
         <div class="filt col-xs-3">
             <p>Artist Nation:</p>
-            @Html.TextBox("aritistNation", "", new {  })
+            @Html.TextBox("aritistNation", "", new { })
         </div>
 
         <div class="col-xs-1">
@@ -37,7 +37,6 @@
     </div>
 </form>
 
-<div id="dynamicContent">
+
     @Html.Partial("AlbumsList", Model)
-</div>
 

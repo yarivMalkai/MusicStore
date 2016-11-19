@@ -55,6 +55,11 @@ namespace MusicStore.Controllers
                          select a;
             }
 
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("AlbumsList", await Albums.ToListAsync());
+            }
+
             return View(await Albums.ToListAsync());
         }
 
