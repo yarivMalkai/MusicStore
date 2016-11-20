@@ -175,3 +175,8 @@ canvas{
     height: 100px;
     width: 200px;
 }
+
+/* ====== Shadow ====== */
+.shadow{
+    text-shadow: 2px 2px #aaaaaa;
+}
