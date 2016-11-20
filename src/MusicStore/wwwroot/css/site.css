@@ -36,7 +36,7 @@ textarea {
 }
 
 /* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"]
+.carousel-inner .item img[src$=".jpg"]
 {
     width: 100%;
 }
@@ -124,7 +124,6 @@ li.user-dropdown {
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    margin-top: 1px;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.3s linear;
@@ -161,4 +160,10 @@ table.details-table{
     -webkit-column-count: 3; /* Chrome, Safari, Opera */
     -moz-column-count: 3; /* Firefox */
     column-count: 3;
+}
+
+/* ======= Videos ======== */
+video{
+    height: 250px;
+    width: 95%;
 }
