@@ -6,7 +6,7 @@
 
 <h2>Create</h2>
 
-<form asp-action="Create">
+<form asp-action="Create" onsubmit="return ValidateSongForm()">
     <div class="form-horizontal">
         <h4>Song</h4>
         <hr />
@@ -34,7 +34,7 @@
         <div class="form-group">
             <label asp-for="Order" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Order" class="form-control" />
+                <input asp-for="Order" id="Order" class="form-control" />
                 <span asp-validation-for="Order" class="text-danger" />
             </div>
         </div>
@@ -53,3 +53,5 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script src="~/js/SongValidation.js">
+</script>
