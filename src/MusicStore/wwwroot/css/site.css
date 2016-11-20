@@ -167,3 +167,11 @@ video{
     height: 250px;
     width: 95%;
 }
+
+/* ========= Canvas =========== */
+canvas{
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 100px;
+    width: 200px;
+}

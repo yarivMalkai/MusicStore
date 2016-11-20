@@ -1,7 +1,25 @@
 ﻿@{
     ViewData["Title"] = "About";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
+<h2>@ViewData["Title"]</h2>
 
-<p>Use this area to provide additional information.</p>
+<h3>This is the Music Store website</h3>
+<h3>Made by:</h3>
+<canvas id="yuvalCanvas"></canvas>
+<canvas id="yarivCanvas"></canvas>
+<canvas id="dorCanvas"></canvas>
+
+<script>
+    function SetCanvas(name, text, id)
+    {
+        var c = document.getElementById(name);
+        var ctx = c.getContext("2d");
+        ctx.font = "40px Arial";
+        ctx.fillText(text, 10, 50);
+        ctx.fillText(id, 10, 100);
+    }
+
+    SetCanvas("yuvalCanvas", "Yuval Amir", "205611197");
+    SetCanvas("yarivCanvas", "Yariv Malkai", "312244684");
+    SetCanvas("dorCanvas", "Dor Ben-Senior", "313168106");
+</script>
